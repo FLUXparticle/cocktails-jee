@@ -1,0 +1,7 @@
+<resources>
+    <Resource id="SQLiteDataSource" type="DataSource">
+        JdbcDriver org.sqlite.JDBC
+        JdbcUrl jdbc:sqlite::resource:cocktails.db
+        JtaManaged true
+    </Resource>
+</resources>
