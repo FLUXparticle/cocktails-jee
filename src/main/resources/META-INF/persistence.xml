@@ -6,7 +6,7 @@
 
     <persistence-unit name="CocktailPU" transaction-type="JTA">
 
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
         <jta-data-source>SQLiteDataSource</jta-data-source>
 
         <class>com.example.cocktails.entity.Cocktail</class>

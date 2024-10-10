@@ -5,16 +5,18 @@ import jakarta.persistence.*;
 import java.util.*;
 
 @Entity
+@Table(name = "cocktails")
 public class Cocktail implements Comparable<Cocktail> {
 
     @Id
+    @Column(name = "cocktail_id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn // (name="cocktail_id")
+    @JoinColumn(name="cocktail_id")
     private Collection<Instruction> instructions;
 
     protected Cocktail() {
