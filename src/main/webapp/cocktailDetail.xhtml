@@ -30,11 +30,13 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Zutat</f:facet>
-                    <h:outputText value="#{instruction.ingredient.name}" />
+                    <!-- Zutaten als anklickbare Links -->
+                    <h:link value="#{instruction.ingredient.name}" outcome="ingredientDetail">
+                        <f:param name="id" value="#{instruction.ingredient.id}" />
+                    </h:link>
                 </h:column>
             </h:dataTable>
         </h:panelGrid>
-
     </h:body>
 </f:view>
 </html>
