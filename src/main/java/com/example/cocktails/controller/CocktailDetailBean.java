@@ -31,7 +31,7 @@ public class CocktailDetailBean implements Serializable {
 
     public void loadCocktail() {
         if (id != null) {
-            cocktail = cocktailService.getCocktailById(id);
+            cocktail = cocktailService.getCocktail(id);
         }
     }
 

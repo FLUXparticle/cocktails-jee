@@ -8,8 +8,6 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.*;
 
-import static java.util.Collections.*;
-
 @Named
 @RequestScoped
 public class CocktailBean implements Serializable {
@@ -17,9 +15,9 @@ public class CocktailBean implements Serializable {
     @Inject
     private CocktailService cocktailService;
 
-    private List<Cocktail> cocktails;
+    private Collection<Cocktail> cocktails;
 
-    public List<Cocktail> getCocktails() {
+    public Collection<Cocktail> getCocktails() {
         if (cocktails == null) {
             cocktails = cocktailService.getAllCocktails();
         }
@@ -27,4 +25,5 @@ public class CocktailBean implements Serializable {
     }
 
     // Weitere Methoden nach Bedarf, z.B. zum Hinzufügen oder Anzeigen eines Cocktails
+
 }

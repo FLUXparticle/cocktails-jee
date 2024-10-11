@@ -1,31 +1,81 @@
 package com.example.cocktails.service;
 
+import com.example.cocktails.dao.*;
 import com.example.cocktails.entity.*;
-import jakarta.enterprise.context.*;
-import jakarta.persistence.*;
-
+import jakarta.ejb.Stateless;
+import jakarta.inject.Inject;
 import java.util.*;
 
-@ApplicationScoped
+@Stateless
 public class CocktailService {
 
-    @PersistenceContext(unitName = "CocktailPU")
-    private EntityManager em;
+    @Inject
+    private CocktailDAO cocktailDAO;
 
-    public List<Cocktail> getAllCocktails() {
-        TypedQuery<Cocktail> query = em.createQuery("SELECT c FROM Cocktail c ORDER BY c.name", Cocktail.class);
-        return query.getResultList();
+    @Inject
+    private IngredientDAO ingredientDAO;
+
+    public Collection<Cocktail> getAllCocktailsWithIngredient(Long ingredientId) {
+        return getAllCocktailsWithIngredients(Collections.singleton(ingredientId));
     }
 
-    public Cocktail getCocktailById(Long id) {
-        return em.find(Cocktail.class, id);
+    public Collection<Ingredient> getAllIngredients() {
+        return ingredientDAO.findAll();
     }
 
-    public void addCocktail(Cocktail cocktail) {
-        em.getTransaction().begin();
-        em.persist(cocktail);
-        em.getTransaction().commit();
+    public Collection<Cocktail> getAllCocktails() {
+        return cocktailDAO.findAll();
     }
 
-    // Weitere CRUD-Methoden nach Bedarf
+    public Cocktail getCocktail(Long id) {
+        return cocktailDAO.findById(id);
+    }
+
+    public Ingredient getIngredient(Long id) {
+        return ingredientDAO.findById(id);
+    }
+
+    public Collection<Cocktail> search(String query) {
+        Collection<Cocktail> cocktailsWithName = cocktailDAO.findByNameContains(query);
+        Collection<Ingredient> ingredientsWithName = ingredientDAO.findByNameContains(query);
+
+        Set<Long> ingredientIDs = new HashSet<>();
+        for (Ingredient ingredient : ingredientsWithName) {
+            ingredientIDs.add(ingredient.getId());
+        }
+
+        SortedSet<Cocktail> result = getAllCocktailsWithIngredients(ingredientIDs);
+        result.addAll(cocktailsWithName);
+
+        return result;
+    }
+
+    private SortedSet<Cocktail> getAllCocktailsWithIngredients(Set<Long> ingredientIDs) {
+        SortedSet<Cocktail> result = new TreeSet<>();
+
+        for (Cocktail cocktail : getAllCocktails()) {
+            for (Instruction instruction : cocktail.getInstructions()) {
+                if (ingredientIDs.contains(instruction.getIngredient().getId())) {
+                    result.add(cocktail);
+                    break;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public Map<Ingredient, Set<Cocktail>> getReverseIngredientsMap(Collection<Cocktail> cocktails) {
+        Map<Ingredient, Set<Cocktail>> reverse = new HashMap<>();
+
+        for (Cocktail cocktail : cocktails) {
+            for (Instruction instruction : cocktail.getInstructions()) {
+                Ingredient ingredient = instruction.getIngredient();
+                reverse.computeIfAbsent(ingredient, key -> new HashSet<>()).add(cocktail);
+            }
+        }
+
+        return reverse;
+    }
+
 }
