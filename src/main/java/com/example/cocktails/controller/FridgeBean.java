@@ -6,7 +6,6 @@ import com.example.cocktails.service.*;
 import jakarta.enterprise.context.*;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import org.slf4j.*;
 
 import java.io.Serializable;
 import java.util.*;
@@ -83,7 +82,7 @@ public class FridgeBean implements Serializable {
         return possibleCocktails;
     }
 
-    public List<ShoppingModel> getShoppingList() {
+    public List<ShoppingModel> getCocktailsWithMissingIngredients() {
         Set<Ingredient> fridgeIngredients = getFridgeIngredients();
 
         List<ShoppingModel> shoppingList = new ArrayList<>();
