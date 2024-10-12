@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <meta charset="UTF-8" />
+    <title>Chat</title>
+    <script type="text/javascript">
+        var ws;
+
+        function connect() {
+            ws = new WebSocket('ws://' + window.location.host + '/chatChannel');
+            console.log('WebSocket open');
+
+            ws.onmessage = function(event) {
+                console.log('WebSocket message');
+                var chatLog = document.getElementById('chatForm:chatLog');
+
+                if (chatLog) {
+                    chatLog.value += event.data + '\n';
+                }
+            };
+
+            ws.onclose = function(event) {
+                console.log('WebSocket closed');
+            };
+
+            ws.onerror = function(event) {
+                console.error('WebSocket error: ', event);
+            };
+        }
+
+        window.onload = connect;
+    </script>
+</h:head>
+<h:body>
+    <h3>Chat</h3>
+    <h:form id="chatForm">
+        <!-- TextArea für den Chatverlauf -->
+        <h:outputText value="Chat-Verlauf:" /><br/>
+        <h:inputTextarea id="chatLog" value="#{chatBean.chatLog}" readonly="true" rows="10" cols="50" />
+
+        <br/><br/>
+
+        <!-- Eingabefeld für die Nachricht -->
+        <h:inputText id="message" value="#{chatBean.message}" />
+        <h:commandButton value="Senden" action="#{chatBean.sendMessage}">
+            <f:ajax execute="@form" render="@none" />
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
