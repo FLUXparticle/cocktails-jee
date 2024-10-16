@@ -65,17 +65,4 @@ public class CocktailService {
         return result;
     }
 
-    public Map<Ingredient, Set<Cocktail>> getReverseIngredientsMap(Collection<Cocktail> cocktails) {
-        Map<Ingredient, Set<Cocktail>> reverse = new HashMap<>();
-
-        for (Cocktail cocktail : cocktails) {
-            for (Instruction instruction : cocktail.getInstructions()) {
-                Ingredient ingredient = instruction.getIngredient();
-                reverse.computeIfAbsent(ingredient, key -> new HashSet<>()).add(cocktail);
-            }
-        }
-
-        return reverse;
-    }
-
 }
