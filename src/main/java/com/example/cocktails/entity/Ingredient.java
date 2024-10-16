@@ -14,6 +14,15 @@ public class Ingredient implements Comparable<Ingredient> {
 
     private String name;
 
+    protected Ingredient() {
+        // empty
+    }
+
+    public Ingredient(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     @Override
     public int compareTo(Ingredient other) {
         return name.compareTo(other.name);

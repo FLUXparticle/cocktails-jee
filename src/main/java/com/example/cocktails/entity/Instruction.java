@@ -18,6 +18,16 @@ public class Instruction {
     @JoinColumn(name = "ingredient_id", insertable=false, updatable=false)
     private Ingredient ingredient;
 
+    protected Instruction() {
+        // empty
+    }
+
+    public Instruction(InstructionKey key, Integer amountCL, Ingredient ingredient) {
+        this.key = key;
+        this.amountCL = amountCL;
+        this.ingredient = ingredient;
+    }
+
     public Integer getAmountCL() {
         return amountCL;
     }

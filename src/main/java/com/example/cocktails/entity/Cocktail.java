@@ -28,6 +28,12 @@ public class Cocktail implements Comparable<Cocktail> {
         this.instructions = instructions;
     }
 
+    public Cocktail(Long id, String name, Collection<Instruction> instructions) {
+        this.id = id;
+        this.name = name;
+        this.instructions = instructions;
+    }
+
     @Override
     public int compareTo(Cocktail other) {
         return name.compareTo(other.name);
