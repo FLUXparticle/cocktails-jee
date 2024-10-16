@@ -4,4 +4,9 @@
         JdbcUrl jdbc:sqlite::resource:cocktails.db
         JtaManaged true
     </Resource>
+    <Resource id="ContactsDataSource" type="DataSource">
+        JdbcDriver org.sqlite.JDBC
+        JdbcUrl jdbc:sqlite:contacts.db
+        JtaManaged true
+    </Resource>
 </resources>

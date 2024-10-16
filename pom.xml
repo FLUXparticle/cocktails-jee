@@ -98,7 +98,13 @@
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>6.6.1.Final</version>
-            <scope>test</scope>
+<!--            <scope>test</scope>-->
+        </dependency>
+        <!-- SQLite Dialect -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-community-dialects</artifactId>
+            <version>6.6.1.Final</version>
         </dependency>
 
         <!-- Open EJB -->

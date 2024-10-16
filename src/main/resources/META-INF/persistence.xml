@@ -15,6 +15,24 @@
         <properties>
             <!-- Properties for TomEE -->
             <property name="tomee.jpa.factory.lazy" value="true" />
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="ContactsPU" transaction-type="JTA">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <jta-data-source>ContactsDataSource</jta-data-source>
+
+        <class>com.example.contacts.entity.Contact</class>
+
+        <properties>
+            <!-- Properties for TomEE -->
+            <property name="tomee.jpa.factory.lazy" value="true" />
+
+            <!-- Properties for OpenJPA -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create" />
+            <property name="openjpa.Log" value="DefaultLevel=INFO, Tool=INFO"/>
 
             <!-- Properties for Hibernate -->
             <property name="hibernate.show_sql" value="true" />
