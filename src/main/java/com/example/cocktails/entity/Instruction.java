@@ -15,7 +15,7 @@ public class Instruction {
     private Integer amountCL;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ingredient_id")
+    @JoinColumn(name = "ingredient_id", insertable=false, updatable=false)
     private Ingredient ingredient;
 
     public Integer getAmountCL() {

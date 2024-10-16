@@ -43,4 +43,8 @@ public class CocktailDAO {
         }
     }
 
+    void setEm(EntityManager em) {
+        this.em = em;
+    }
+
 }

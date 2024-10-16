@@ -6,7 +6,6 @@
 
     <persistence-unit name="CocktailPU" transaction-type="JTA">
 
-<!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
         <jta-data-source>SQLiteDataSource</jta-data-source>
 
         <class>com.example.cocktails.entity.Cocktail</class>
@@ -16,18 +15,10 @@
         <properties>
             <!-- Properties for TomEE -->
             <property name="tomee.jpa.factory.lazy" value="true" />
-<!--
-            <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:cocktails.db"/>
--->
 
             <!-- Properties for Hibernate -->
             <property name="hibernate.show_sql" value="true" />
-<!--
             <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
-            <property name="hibernate.format_sql" value="true"/>
--->
         </properties>
     </persistence-unit>
 </persistence>
