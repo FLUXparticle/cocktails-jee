@@ -149,6 +149,42 @@
             <version>5.14.2</version>
         </dependency>
 
+        <!-- Arquillian JUnit 5 Adapter -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit5</groupId>
+            <artifactId>arquillian-junit5-container</artifactId>
+            <version>1.7.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TomEE Managed Container -->
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>arquillian-tomee-embedded</artifactId>
+            <version>10.0.0-M2</version>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.arquillian.junit</groupId>
+                    <artifactId>arquillian-junit-container</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- ShrinkWrap for Deployment -->
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-api</artifactId>
+            <version>1.2.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap</groupId>
+            <artifactId>shrinkwrap-impl-base</artifactId>
+            <version>1.2.6</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -1,12 +1,10 @@
 package com.example.cocktails.dao;
 
-import com.example.cocktails.entity.Cocktail;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.EntityManagerFactory;
+import com.example.cocktails.entity.*;
+import jakarta.persistence.*;
 import org.junit.jupiter.api.*;
 
-import java.util.Collection;
+import java.util.*;
 
 import static java.util.Collections.*;
 import static org.junit.jupiter.api.Assertions.*;

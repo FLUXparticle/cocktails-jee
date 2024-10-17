@@ -1,11 +1,10 @@
 package com.example.cocktails.dao;
 
 import com.example.cocktails.entity.*;
-import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import java.util.Collection;
+import jakarta.ejb.*;
+import jakarta.persistence.*;
+
+import java.util.*;
 
 @Stateless
 public class CocktailDAO {
